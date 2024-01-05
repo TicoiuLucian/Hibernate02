@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,6 +23,11 @@ public class Caretaker {
 
   private Integer age;
 
-  @OneToMany
-  private List<Animal> animals;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "caretaker")
+  private List<Animal> animals = new ArrayList<>();
+
+  public void addAnimal(Animal animal) {
+    animal.setCaretaker(this);
+    animals.add(animal);
+  }
 }

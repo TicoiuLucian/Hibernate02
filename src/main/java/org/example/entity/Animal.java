@@ -20,6 +20,10 @@ public class Animal {
   @Column(unique = true, name = "animal_name")
   private String name;
 
+  @ManyToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "caretaker_id")
+  private Caretaker caretaker;
+
   public Animal(String name) {
     this.name = name;
   }

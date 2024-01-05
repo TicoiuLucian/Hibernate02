@@ -1,6 +1,6 @@
 package org.example.dao;
 
-import org.example.entity.Animal;
+import org.example.entity.Caretaker;
 import org.example.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,66 +9,50 @@ import org.hibernate.Transaction;
 import java.util.List;
 import java.util.Optional;
 
-public class AnimalDAOImpl implements DAO<Animal> {
+public class CaretakerDAOImpl implements DAO<Caretaker> {
 
   private final SessionFactory sessionFactory;
   private Session session;
   private Transaction transaction;
 
-  public AnimalDAOImpl() {
+  public CaretakerDAOImpl() {
     this.sessionFactory = HibernateUtil.getSessionFactory();
   }
 
   @Override
-  public List<Animal> getAll() {
-
+  public List<Caretaker> getAll() {
     openSession();
-    List<Animal> animals = this.session.createQuery("SELECT a FROM Animal a", Animal.class).getResultList();
+    var caretakers = this.session.createQuery("SELECT c FROM Caretaker c", Caretaker.class).getResultList();
     closeSession();
-    return animals;
+    return caretakers;
   }
 
   @Override
-  public Optional<Animal> getById(Integer id) {
+  public Optional<Caretaker> getById(final Integer id) {
     openSession();
-    Optional<Animal> animal = Optional.ofNullable(session.get(Animal.class, id));
+    var optionalCaretaker = Optional.ofNullable(session.get(Caretaker.class, id));
     closeSession();
-    return animal;
+    return optionalCaretaker;
   }
 
   @Override
-  public Animal persist(Animal animal) {
+  public Caretaker persist(final Caretaker caretaker) {
     openSessionAndTransaction();
-    Animal persistedAnimal = session.merge(animal);
+    var enhancedCaretaker = session.merge(caretaker);
     closeSessionAndCommitTransaction();
-    return persistedAnimal;
+    return enhancedCaretaker;
   }
 
   @Override
-  public void delete(Animal animal) {
+  public void delete(final Caretaker caretaker) {
     openSessionAndTransaction();
-    this.session.remove(animal);
+    session.remove(caretaker);
     closeSessionAndCommitTransaction();
-
   }
 
   @Override
-  public void update(Animal animal, String... args) {
-    openSessionAndTransaction();
+  public void update(final Caretaker caretaker, final String... args) {
 
-    if (args.length % 2 != 0) {
-      throw new IllegalArgumentException("Arguments should be provided in field-value pairs");
-    }
-
-    for (int i = 0; i < args.length; i += 2) {
-      String field = args[i];
-      String value = args[i + 1];
-      if ("name".equals(field)) {
-        animal.setName(value);
-        session.merge(animal);
-      }
-    }
-    closeSessionAndCommitTransaction();
   }
 
   private void openSessionAndTransaction() {
