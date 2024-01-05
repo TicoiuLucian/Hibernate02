@@ -7,8 +7,7 @@
 
         <!-- JDBC Database connection settings -->
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate02?createDatabaseIfNotExist=true&amp;useSSL=false
-        </property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate02?createDatabaseIfNotExist=true&amp;useSSL=false</property>
         <property name="connection.username">root</property>
         <property name="connection.password"/>
 
@@ -17,8 +16,6 @@
 
         <!-- Echo the SQL to stdout -->
         <property name="show_sql">true</property>
-        <property name="format_sql">true</property>
-        <property name="use_sql_comments">true</property>
 
         <!-- Set the current session context -->
         <property name="current_session_context_class">thread</property>
@@ -35,8 +32,6 @@
 
         <mapping class="org.example.entity.Animal"/>
         <mapping class="org.example.entity.Caretaker"/>
-
-
     </session-factory>
 
 </hibernate-configuration>
