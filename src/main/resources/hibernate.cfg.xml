@@ -9,8 +9,8 @@
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/hibernate02?createDatabaseIfNotExist=true&amp;useSSL=false
         </property>
-        <property name="connection.username">root</property>
-        <property name="connection.password"/>
+        <property name="connection.username">newuser</property>
+        <property name="connection.password">password</property>
 
         <!-- JDBC connection pool settings ... using built-in test pool -->
         <property name="connection.pool_size">2</property>
@@ -35,8 +35,5 @@
 
         <mapping class="org.example.entity.Animal"/>
         <mapping class="org.example.entity.Caretaker"/>
-
-
     </session-factory>
-
 </hibernate-configuration>
