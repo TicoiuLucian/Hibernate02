@@ -8,20 +8,36 @@ import org.example.service.Service;
 
 public class Main {
   public static void main(String[] args) {
-
     Service<Caretaker> caretakerService = new CaretakerService();
     Service<Animal> animalService = new AnimalService();
 
-    Animal animal3 = animalService.persist(new Animal("Pantera"));
+    Caretaker caretakerOne = new Caretaker();
+    caretakerOne.setCaretakerName("Marcel");
+    caretakerOne.setAge(35);
 
-    Caretaker caretaker = new Caretaker();
-    caretaker.setAge(35);
-    caretaker.setCaretakerName("Marcel");
-    caretaker.addAnimal(new Animal("Lion"));
-    caretaker.addAnimal(new Animal("Tiger"));
-    caretaker.addAnimal(animal3);
+    Caretaker caretakerTwo = new Caretaker();
+    caretakerTwo.setCaretakerName("Ion");
+    caretakerTwo.setAge(27);
 
-    caretakerService.persist(caretaker);
+    Caretaker caretakerThree = new Caretaker();
+    caretakerThree.setCaretakerName("Daniel");
+    caretakerThree.setAge(21);
 
+    caretakerOne.addAnimal(new Animal("Lion"));
+    caretakerOne.addAnimal(new Animal("Tiger"));
+    caretakerOne.addAnimal(new Animal("Panther"));
+
+    caretakerTwo.addAnimal(new Animal("Deer"));
+    caretakerTwo.addAnimal(new Animal("Mouse"));
+    caretakerTwo.addAnimal(new Animal("Zebra"));
+
+    caretakerThree.addAnimal(new Animal("Parrot"));
+    caretakerThree.addAnimal(new Animal("Lizard"));
+    caretakerThree.addAnimal(new Animal("Beetle"));
+    caretakerThree.addAnimal(new Animal("Rabbit"));
+
+    caretakerService.persist(caretakerOne);
+    caretakerService.persist(caretakerTwo);
+    caretakerService.persist(caretakerThree);
   }
 }
